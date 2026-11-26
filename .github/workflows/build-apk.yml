@@ -27,8 +27,13 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Accetta licenze Android SDK preinstallato
+        run: |
+          SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
+          SDKMANAGER="$SDK_ROOT/cmdline-tools/latest/bin/sdkmanager"
+          if [ -x "$SDKMANAGER" ]; then
+            { yes || true; } | "$SDKMANAGER" --licenses > /dev/null 2>&1 || true
+          fi
 
       - name: Assicura Pillow per ridimensionamento icone Android
         run: |
@@ -56,10 +61,6 @@ jobs:
           fi
           npx cap sync android
           node scripts/configure-android.mjs
-
-      - name: Accetta licenze Android SDK
-        run: |
-          yes | sdkmanager --licenses > /dev/null 2>&1 || true
 
       - name: Costruisci APK Android con Gradle
         working-directory: android
