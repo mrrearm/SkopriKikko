@@ -286,12 +286,12 @@ export default function App() {
               {/* Colonna destra: Fotografia editoriale tazzina e chicchi di caffè */}
               <div className="lg:col-span-5 flex flex-col">
                 <div className="flex-1 bg-white border border-[#DFD2BF] rounded-xl overflow-hidden flex flex-col">
-                  <div className="flex-1 min-h-[280px] bg-[#EDE3D5] overflow-hidden">
+                  <div className="aspect-[11/12] lg:aspect-auto lg:flex-1 min-h-[280px] bg-[#EDE3D5] overflow-hidden">
                     <img
                       src={COFFEE_IMAGES.heroCupBeans}
-                      alt="Tazzina bianca di espresso con crema dorata, chicchi di caffè tostati e caffettiera Kamira in acciaio inox sullo sfondo"
+                      alt="Tazzina di espresso cremoso con sacco di chicchi tostati, caffettiera Kamira e confezione di caffè SkopriKikko"
                       referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-center"
                     />
                   </div>
                   <div className="px-5 py-4 bg-white border-t border-[#EDE3D5] flex items-center justify-between gap-4 text-xs text-[#593724]">

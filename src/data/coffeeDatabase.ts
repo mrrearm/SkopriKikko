@@ -1,5 +1,10 @@
 import type { CoffeeBrand } from '../types/coffee';
 import { EXTENDED_BRANDS } from './extendedBrands';
+import {
+  ADDITIONAL_ITALIAN_BRANDS,
+  EXTRA_ALIASES_BY_BRAND_ID,
+  EXTRA_BLENDS_BY_BRAND_ID,
+} from './additionalItalianBrands';
 
 const assetUrl = (relativePath: string): string => {
   const base = import.meta.env.BASE_URL || '/';
@@ -17,7 +22,7 @@ export const SKOPRIKIKKO_LOGO = assetUrl(
 export const KAMIRA_OFFICIAL_URL = 'https://www.espressokamira.com';
 
 export const COFFEE_IMAGES = {
-  heroCupBeans: assetUrl('src/assets/images/hero_kamira_espresso_1795688124394.jpg'),
+  heroCupBeans: assetUrl('assets/aistudio/file_00000000d9b48246b1e67e78ba87ddb9_03ec344c.png'),
   grindComparison: assetUrl('src/assets/images/coffee_grind_comparison_1795680029197.jpg'),
   beanOrigins: assetUrl('src/assets/images/roasted_beans_origins_1795680029555.jpg'),
   espressoCups: assetUrl('src/assets/images/italian_espresso_cups_1795680029968.jpg'),
@@ -72,7 +77,7 @@ export const KAMIRA_OFFICIAL_INFO = {
   ],
 };
 
-export const CURATED_BRANDS: CoffeeBrand[] = [
+const BASE_CURATED_BRANDS: CoffeeBrand[] = [
   {
     id: 'lavazza',
     name: 'Lavazza',
@@ -1058,4 +1063,20 @@ export const CURATED_BRANDS: CoffeeBrand[] = [
     ],
   },
   ...EXTENDED_BRANDS,
+  ...ADDITIONAL_ITALIAN_BRANDS,
 ];
+
+export const CURATED_BRANDS: CoffeeBrand[] = BASE_CURATED_BRANDS.map((brand) => {
+  const extraAliases = EXTRA_ALIASES_BY_BRAND_ID[brand.id];
+  const extraBlends = EXTRA_BLENDS_BY_BRAND_ID[brand.id];
+  if (!extraAliases && !extraBlends) {
+    return brand;
+  }
+  return {
+    ...brand,
+    aliases: extraAliases
+      ? Array.from(new Set([...(brand.aliases ?? []), ...extraAliases]))
+      : brand.aliases,
+    blends: extraBlends ? [...brand.blends, ...extraBlends] : brand.blends,
+  };
+});
