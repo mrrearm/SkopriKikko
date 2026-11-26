@@ -19,4 +19,4 @@ Questo repository include due workflow automatici su **GitHub Actions**: uno per
 
 ## Ricerca marche extra online (opzionale)
 
-Sia il sito web sia l'APK funzionano subito offline con 32 torrefazioni italiane e internazionali (oltre 100 miscele complete di grammatura, origine dei chicchi e compatibilità Kamira) già integrate. Per abilitare anche la ricerca online di marche aggiuntive, imposta su GitHub in **Settings > Secrets and variables > Actions > Variables** la variabile `VITE_API_BASE_URL` con l'URL del tuo server SkopriKikko pubblicato.
+Sia il sito web sia l'APK funzionano subito offline con 35 torrefazioni italiane e internazionali (oltre 115 miscele complete di grammatura, origine dei chicchi e compatibilità Kamira) già integrate. Per abilitare anche la ricerca online di marche aggiuntive, imposta su GitHub in **Settings > Secrets and variables > Actions > Variables** la variabile `VITE_API_BASE_URL` con l'URL del tuo server SkopriKikko pubblicato.

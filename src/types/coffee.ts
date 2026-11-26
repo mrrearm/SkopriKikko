@@ -26,6 +26,7 @@ export interface CoffeeBlend {
 export interface CoffeeBrand {
   id: string;
   name: string;
+  aliases?: string[];
   city: string;
   country: string;
   foundedYear: string;

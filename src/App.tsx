@@ -33,19 +33,28 @@ export default function App() {
     [brands, selectedBrandId]
   );
 
-  // Suggerimenti istantanei mentre l'utente digita
+  const normalizeSearchText = (value: string): string =>
+    value
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[’'`]/g, '')
+      .toLowerCase()
+      .trim();
+
+  // Suggerimenti istantanei mentre l'utente digita (ignora accenti, apostrofi e riconosce alias es. "bistrot" -> "Bristot")
   const matchingSuggestions = useMemo(() => {
-    const q = searchInput.trim().toLowerCase();
+    const q = normalizeSearchText(searchInput);
     if (!q) return [];
     return brands.filter(
       (brand) =>
-        brand.name.toLowerCase().includes(q) ||
-        brand.city.toLowerCase().includes(q) ||
-        brand.country.toLowerCase().includes(q) ||
+        normalizeSearchText(brand.name).includes(q) ||
+        (brand.aliases ?? []).some((alias) => normalizeSearchText(alias).includes(q)) ||
+        normalizeSearchText(brand.city).includes(q) ||
+        normalizeSearchText(brand.country).includes(q) ||
         brand.blends.some(
           (blend) =>
-            blend.name.toLowerCase().includes(q) ||
-            blend.origins.some((origin) => origin.toLowerCase().includes(q))
+            normalizeSearchText(blend.name).includes(q) ||
+            blend.origins.some((origin) => normalizeSearchText(origin).includes(q))
         )
     );
   }, [brands, searchInput]);
@@ -133,15 +142,22 @@ export default function App() {
       return;
     }
 
-    // Controlla corrispondenza per nome marca o per miscela/città/origine nell'archivio locale
-    const normalized = q.toLowerCase();
+    // Controlla corrispondenza per nome marca, alias, miscela, città o origine nell'archivio locale
+    const normalized = normalizeSearchText(q);
     const exactMatch =
-      brands.find(
-        (b) =>
-          b.name.toLowerCase() === normalized ||
-          b.name.toLowerCase().includes(normalized) ||
-          normalized.includes(b.name.toLowerCase())
-      ) ?? matchingSuggestions[0];
+      brands.find((b) => {
+        const nameNorm = normalizeSearchText(b.name);
+        const aliasMatch = (b.aliases ?? []).some((alias) => {
+          const aliasNorm = normalizeSearchText(alias);
+          return aliasNorm === normalized || aliasNorm.includes(normalized) || normalized.includes(aliasNorm);
+        });
+        return (
+          nameNorm === normalized ||
+          nameNorm.includes(normalized) ||
+          normalized.includes(nameNorm) ||
+          aliasMatch
+        );
+      }) ?? matchingSuggestions[0];
 
     if (exactMatch) {
       setSelectedBrandId(exactMatch.id);
