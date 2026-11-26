@@ -1,0 +1,6 @@
+{
+  "name": "SkopriKikko",
+  "description": "Guida elegante alle miscele di caffè, macinatura, provenienza dei chicchi e compatibilità con la macchina espresso da fornello Kamira.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

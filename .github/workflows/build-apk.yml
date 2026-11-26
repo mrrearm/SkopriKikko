@@ -1,0 +1,68 @@
+name: Build SkopriKikko Android APK
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-android-apk:
+    name: Genera APK Android (Debug)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Setup Java 21 (Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Installa dipendenze
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Compila app web (Vite)
+        env:
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL || '' }}
+        run: npm run build
+
+      - name: Genera e sincronizza progetto Android Capacitor
+        run: |
+          if [ ! -d "android" ]; then
+            npx cap add android
+          fi
+          npx cap sync android
+          node scripts/configure-android.mjs
+
+      - name: Costruisci APK Android con Gradle
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Rinomina APK pronto per il download
+        run: |
+          mkdir -p release-apk
+          cp android/app/build/outputs/apk/debug/app-debug.apk release-apk/SkopriKikko.apk
+
+      - name: Carica APK negli Artifact di GitHub
+        uses: actions/upload-artifact@v4
+        with:
+          name: SkopriKikko-APK
+          path: release-apk/SkopriKikko.apk
+          retention-days: 30
