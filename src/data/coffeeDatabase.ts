@@ -17,7 +17,7 @@ export const SKOPRIKIKKO_LOGO = assetUrl(
 export const KAMIRA_OFFICIAL_URL = 'https://www.espressokamira.com';
 
 export const COFFEE_IMAGES = {
-  heroCupBeans: assetUrl('src/assets/images/hero_espresso_beans_1795680026987.jpg'),
+  heroCupBeans: assetUrl('src/assets/images/hero_kamira_espresso_1795688124394.jpg'),
   grindComparison: assetUrl('src/assets/images/coffee_grind_comparison_1795680029197.jpg'),
   beanOrigins: assetUrl('src/assets/images/roasted_beans_origins_1795680029555.jpg'),
   espressoCups: assetUrl('src/assets/images/italian_espresso_cups_1795680029968.jpg'),

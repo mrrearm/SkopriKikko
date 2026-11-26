@@ -289,7 +289,7 @@ export default function App() {
                   <div className="flex-1 min-h-[280px] bg-[#EDE3D5] overflow-hidden">
                     <img
                       src={COFFEE_IMAGES.heroCupBeans}
-                      alt="Tazzina bianca di espresso con crema dorata circondata da chicchi di caffè tostati su pietra beige"
+                      alt="Tazzina bianca di espresso con crema dorata, chicchi di caffè tostati e caffettiera Kamira in acciaio inox sullo sfondo"
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover"
                     />
