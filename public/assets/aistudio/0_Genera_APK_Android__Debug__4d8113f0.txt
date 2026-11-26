@@ -1,0 +1,144 @@
+﻿2026-11-26T08:33:01.6559384Z Current runner version: '2.338.2'
+2026-11-26T08:33:01.6639625Z ##[group]Runner Image Provisioner
+2026-11-26T08:33:01.6640640Z Hosted Compute Agent
+2026-11-26T08:33:01.6641304Z Version: 20261111.635
+2026-11-26T08:33:01.6642175Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+2026-11-26T08:33:01.6643069Z Build Date: 2026-11-11T01:49:01Z
+2026-11-26T08:33:01.6643929Z Worker ID: {8aedb20a-023e-4dfb-a9c0-5ee0c264be07}
+2026-11-26T08:33:01.6645084Z Region: centralus
+2026-11-26T08:33:01.6645745Z Cloud: Azure
+2026-11-26T08:33:01.6646460Z ##[endgroup]
+2026-11-26T08:33:01.6648366Z ##[group]Operating System
+2026-11-26T08:33:01.6649188Z Ubuntu
+2026-11-26T08:33:01.6649818Z 26.04.1
+2026-11-26T08:33:01.6650401Z LTS
+2026-11-26T08:33:01.6651061Z ##[endgroup]
+2026-11-26T08:33:01.6651791Z ##[group]Runner Image
+2026-11-26T08:33:01.6652926Z Image: ubuntu-26.04
+2026-11-26T08:33:01.6653636Z Version: 20261116.202.1
+2026-11-26T08:33:01.6675746Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-26T08:33:01.6677723Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202
+2026-11-26T08:33:01.6678945Z ##[endgroup]
+2026-11-26T08:33:01.6680353Z ##[group]GITHUB_TOKEN Permissions
+2026-11-26T08:33:01.6683047Z Contents: read
+2026-11-26T08:33:01.6683801Z Metadata: read
+2026-11-26T08:33:01.6684752Z Packages: read
+2026-11-26T08:33:01.6685465Z ##[endgroup]
+2026-11-26T08:33:01.6688027Z Secret source: Actions
+2026-11-26T08:33:01.6689201Z Cache mode: write
+2026-11-26T08:33:01.6690459Z Prepare workflow directory
+2026-11-26T08:33:01.7275763Z Prepare all required actions
+2026-11-26T08:33:01.7392813Z Getting action download info
+2026-11-26T08:33:02.0216079Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-26T08:33:02.1561125Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-11-26T08:33:02.3609287Z Download action repository 'actions/setup-java@v4' (SHA:cf277c60eb25467037889841efdb72551f06f6c3)
+2026-11-26T08:33:02.9679910Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-26T08:33:03.3178483Z Complete job name: Genera APK Android (Debug)
+2026-11-26T08:33:03.3963960Z ##[group]Run actions/checkout@v4
+2026-11-26T08:33:03.3965695Z with:
+2026-11-26T08:33:03.3966467Z   repository: mrrearm/SkopriKikko
+2026-11-26T08:33:03.3974807Z   token: ***
+2026-11-26T08:33:03.3975621Z   ssh-strict: true
+2026-11-26T08:33:03.3976399Z   ssh-user: git
+2026-11-26T08:33:03.3977228Z   persist-credentials: true
+2026-11-26T08:33:03.3978109Z   clean: true
+2026-11-26T08:33:03.3978872Z   sparse-checkout-cone-mode: true
+2026-11-26T08:33:03.3979829Z   fetch-depth: 1
+2026-11-26T08:33:03.3980622Z   fetch-tags: false
+2026-11-26T08:33:03.3981450Z   show-progress: true
+2026-11-26T08:33:03.3982239Z   lfs: false
+2026-11-26T08:33:03.3982948Z   submodules: false
+2026-11-26T08:33:03.3983782Z   set-safe-directory: true
+2026-11-26T08:33:03.3984808Z   allow-unsafe-pr-checkout: false
+2026-11-26T08:33:03.3985997Z ##[endgroup]
+2026-11-26T08:33:03.6162997Z Syncing repository: mrrearm/SkopriKikko
+2026-11-26T08:33:03.6166465Z ##[group]Getting Git version info
+2026-11-26T08:33:03.6168349Z Working directory is '/home/runner/work/SkopriKikko/SkopriKikko'
+2026-11-26T08:33:03.6170853Z [command]/usr/bin/git version
+2026-11-26T08:33:03.6235370Z git version 2.56.1
+2026-11-26T08:33:03.6316815Z ##[endgroup]
+2026-11-26T08:33:03.6358100Z Temporarily overriding HOME='/home/runner/work/_temp/2ead7765-6b0c-4f9a-b28e-ecc58df8b808' before making global git config changes
+2026-11-26T08:33:03.6361750Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-26T08:33:03.6365179Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/SkopriKikko/SkopriKikko
+2026-11-26T08:33:03.6369864Z Deleting the contents of '/home/runner/work/SkopriKikko/SkopriKikko'
+2026-11-26T08:33:03.6372830Z ##[group]Initializing the repository
+2026-11-26T08:33:03.6375436Z [command]/usr/bin/git init /home/runner/work/SkopriKikko/SkopriKikko
+2026-11-26T08:33:03.6475457Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-26T08:33:03.6480511Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-26T08:33:03.6483112Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-26T08:33:03.6505964Z hint: call:
+2026-11-26T08:33:03.6507549Z hint:
+2026-11-26T08:33:03.6509034Z hint: 	git config --global init.defaultBranch <name>
+2026-11-26T08:33:03.6510742Z hint:
+2026-11-26T08:33:03.6512258Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-26T08:33:03.6515206Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-26T08:33:03.6517915Z hint:
+2026-11-26T08:33:03.6519108Z hint: 	git branch -m <name>
+2026-11-26T08:33:03.6520363Z hint:
+2026-11-26T08:33:03.6521972Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-26T08:33:03.6524991Z Initialized empty Git repository in /home/runner/work/SkopriKikko/SkopriKikko/.git/
+2026-11-26T08:33:03.6529732Z [command]/usr/bin/git remote add origin https://github.com/mrrearm/SkopriKikko
+2026-11-26T08:33:03.6566255Z ##[endgroup]
+2026-11-26T08:33:03.6568423Z ##[group]Disabling automatic garbage collection
+2026-11-26T08:33:03.6583074Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-26T08:33:03.6636895Z ##[endgroup]
+2026-11-26T08:33:03.6638421Z ##[group]Setting up auth
+2026-11-26T08:33:03.6640091Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-26T08:33:03.6747232Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-26T08:33:03.7538556Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-26T08:33:03.7593882Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-26T08:33:03.7791340Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-26T08:33:03.7825589Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-26T08:33:03.8014050Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-26T08:33:03.8056943Z ##[endgroup]
+2026-11-26T08:33:03.8059774Z ##[group]Fetching the repository
+2026-11-26T08:33:03.8063755Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +2ee9b2f09437e37753f2ef84b24990a8658e56ce:refs/remotes/origin/main
+2026-11-26T08:33:04.6570638Z From https://github.com/mrrearm/SkopriKikko
+2026-11-26T08:33:04.6571840Z  * [new ref]         2ee9b2f09437e37753f2ef84b24990a8658e56ce -> origin/main
+2026-11-26T08:33:04.6576866Z ##[endgroup]
+2026-11-26T08:33:04.6577859Z ##[group]Determining the checkout info
+2026-11-26T08:33:04.6580636Z ##[endgroup]
+2026-11-26T08:33:04.6582053Z [command]/usr/bin/git sparse-checkout disable
+2026-11-26T08:33:04.6593192Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-26T08:33:04.6621617Z ##[group]Checking out the ref
+2026-11-26T08:33:04.6622456Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-11-26T08:33:04.6833470Z Switched to a new branch 'main'
+2026-11-26T08:33:04.6843870Z branch 'main' set up to track 'origin/main'.
+2026-11-26T08:33:04.6846141Z ##[endgroup]
+2026-11-26T08:33:04.6882817Z [command]/usr/bin/git log -1 --format=%H
+2026-11-26T08:33:04.6896818Z 2ee9b2f09437e37753f2ef84b24990a8658e56ce
+2026-11-26T08:33:04.7135277Z ##[group]Run actions/setup-node@v4
+2026-11-26T08:33:04.7135703Z with:
+2026-11-26T08:33:04.7136206Z   node-version: 22
+2026-11-26T08:33:04.7136528Z   cache: npm
+2026-11-26T08:33:04.7136887Z   always-auth: false
+2026-11-26T08:33:04.7137255Z   check-latest: false
+2026-11-26T08:33:04.7139709Z   token: ***
+2026-11-26T08:33:04.7140036Z ##[endgroup]
+2026-11-26T08:33:04.8381530Z (node:2095) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-26T08:33:04.8386016Z Found in cache @ /opt/hostedtoolcache/node/22.23.5/x64
+2026-11-26T08:33:04.8387738Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-26T08:33:04.8389108Z ##[group]Environment details
+2026-11-26T08:33:05.3619387Z node: v22.23.5
+2026-11-26T08:33:05.3620834Z npm: 10.9.9
+2026-11-26T08:33:05.3629181Z yarn: 1.22.22
+2026-11-26T08:33:05.3630648Z ##[endgroup]
+2026-11-26T08:33:05.3663186Z [command]/opt/hostedtoolcache/node/22.23.5/x64/bin/npm config get cache
+2026-11-26T08:33:05.4532509Z /home/runner/.npm
+2026-11-26T08:33:05.4594714Z ##[error]Dependencies lock file is not found in /home/runner/work/SkopriKikko/SkopriKikko. Supported file patterns: package-lock.json,npm-shrinkwrap.json,yarn.lock
+2026-11-26T08:33:05.4796710Z Post job cleanup.
+2026-11-26T08:33:05.5582325Z [command]/usr/bin/git version
+2026-11-26T08:33:05.5633706Z git version 2.56.1
+2026-11-26T08:33:05.5697138Z Temporarily overriding HOME='/home/runner/work/_temp/2b68689b-10ce-493e-9401-28889133422d' before making global git config changes
+2026-11-26T08:33:05.5698307Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-26T08:33:05.5699297Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/SkopriKikko/SkopriKikko
+2026-11-26T08:33:05.5765290Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-26T08:33:05.5769263Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-26T08:33:05.6091788Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-26T08:33:05.6107466Z http.https://github.com/.extraheader
+2026-11-26T08:33:05.6135194Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-26T08:33:05.6171588Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-26T08:33:05.6565913Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-26T08:33:05.6609659Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-26T08:33:05.7024943Z Cleaning up orphan processes
+2026-11-26T08:33:05.7271812Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

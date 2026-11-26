@@ -3,6 +3,9 @@ import type { CoffeeBrand } from '../types/coffee';
 export const KAMIRA_OFFICIAL_IMAGE =
   '/assets/aistudio/20260806120710_kamira_vaschettanuvoa_caffe_1a9cc26f.png';
 
+export const SKOPRIKIKKO_LOGO =
+  '/assets/aistudio/file_0000000052e482468eb1a3fb8669d88d_f2cd885c.png';
+
 export const KAMIRA_OFFICIAL_URL = 'https://www.espressokamira.com';
 
 export const COFFEE_IMAGES = {

@@ -1,3 +1,5 @@
+import { SKOPRIKIKKO_LOGO } from '../data/coffeeDatabase';
+
 interface HeaderProps {
   onFocusSearch: () => void;
 }
@@ -6,12 +8,18 @@ export function Header({ onFocusSearch }: HeaderProps) {
   return (
     <header className="sticky top-0 z-40 bg-[#FCF9F4]/95 backdrop-blur-sm border-b border-[#DFD2BF] safe-area-top">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between gap-6 sm:gap-8">
-        {/* Zone 1: Single-line Brand Wordmark */}
+        {/* Zone 1: Single-line Brand Logo & Wordmark */}
         <a
           href="#inizio"
-          className="font-serif text-2xl font-semibold tracking-tight text-[#2C1B12] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#593724] rounded-sm"
+          className="inline-flex items-center gap-2.5 font-serif text-2xl font-semibold tracking-tight text-[#2C1B12] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#593724] rounded-sm"
         >
-          SkopriKikko
+          <img
+            src={SKOPRIKIKKO_LOGO}
+            alt="Logo SkopriKikko"
+            referrerPolicy="no-referrer"
+            className="w-9 h-9 rounded-full object-cover ring-1 ring-[#C7A97B] shrink-0"
+          />
+          <span>SkopriKikko</span>
         </a>
 
         {/* Zone 2: Clean single-line text nav links */}

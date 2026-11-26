@@ -4,6 +4,7 @@ import {
   COFFEE_IMAGES,
   CURATED_BRANDS,
   KAMIRA_OFFICIAL_URL,
+  SKOPRIKIKKO_LOGO,
 } from './data/coffeeDatabase';
 import type { CoffeeBlend, CoffeeBrand, CompatibilityFilter } from './types/coffee';
 import { Header } from './components/Header';
@@ -305,11 +306,19 @@ export default function App() {
       {/* Footer sobrio con protezione safe-area inferiore per barra gesti Android */}
       <footer className="bg-[#2C1B12] text-[#DFD2BF] border-t border-[#3E261A] safe-area-bottom">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div className="space-y-1">
-            <p className="font-serif text-xl font-semibold text-[#FCF9F4]">SkopriKikko</p>
-            <p className="text-xs text-[#C7B39C]">
-              Guida alle miscele di caffè, macinatura e compatibilità con la caffettiera espresso Kamira.
-            </p>
+          <div className="flex items-center gap-3.5">
+            <img
+              src={SKOPRIKIKKO_LOGO}
+              alt="Logo SkopriKikko"
+              referrerPolicy="no-referrer"
+              className="w-11 h-11 rounded-full object-cover ring-1 ring-[#9C7052] shrink-0"
+            />
+            <div className="space-y-0.5">
+              <p className="font-serif text-xl font-semibold text-[#FCF9F4]">SkopriKikko</p>
+              <p className="text-xs text-[#C7B39C]">
+                Guida alle miscele di caffè, macinatura e compatibilità con la caffettiera espresso Kamira.
+              </p>
+            </div>
           </div>
           <div className="flex flex-wrap items-center gap-6 text-xs">
             <a href="#ricerca" className="hover:text-white transition-colors whitespace-nowrap">
