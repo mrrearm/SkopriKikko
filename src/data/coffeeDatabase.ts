@@ -1,18 +1,26 @@
 import type { CoffeeBrand } from '../types/coffee';
+import { EXTENDED_BRANDS } from './extendedBrands';
 
-export const KAMIRA_OFFICIAL_IMAGE =
-  '/assets/aistudio/20260806120710_kamira_vaschettanuvoa_caffe_1a9cc26f.png';
+const assetUrl = (relativePath: string): string => {
+  const base = import.meta.env.BASE_URL || '/';
+  return `${base.endsWith('/') ? base : `${base}/`}${relativePath.replace(/^\/+/, '')}`;
+};
 
-export const SKOPRIKIKKO_LOGO =
-  '/assets/aistudio/file_0000000052e482468eb1a3fb8669d88d_f2cd885c.png';
+export const KAMIRA_OFFICIAL_IMAGE = assetUrl(
+  'assets/aistudio/20260806120710_kamira_vaschettanuvoa_caffe_1a9cc26f.png'
+);
+
+export const SKOPRIKIKKO_LOGO = assetUrl(
+  'assets/aistudio/file_0000000052e482468eb1a3fb8669d88d_f2cd885c.png'
+);
 
 export const KAMIRA_OFFICIAL_URL = 'https://www.espressokamira.com';
 
 export const COFFEE_IMAGES = {
-  heroCupBeans: '/src/assets/images/hero_espresso_beans_1795680026987.jpg',
-  grindComparison: '/src/assets/images/coffee_grind_comparison_1795680029197.jpg',
-  beanOrigins: '/src/assets/images/roasted_beans_origins_1795680029555.jpg',
-  espressoCups: '/src/assets/images/italian_espresso_cups_1795680029968.jpg',
+  heroCupBeans: assetUrl('src/assets/images/hero_espresso_beans_1795680026987.jpg'),
+  grindComparison: assetUrl('src/assets/images/coffee_grind_comparison_1795680029197.jpg'),
+  beanOrigins: assetUrl('src/assets/images/roasted_beans_origins_1795680029555.jpg'),
+  espressoCups: assetUrl('src/assets/images/italian_espresso_cups_1795680029968.jpg'),
 };
 
 export const KAMIRA_OFFICIAL_INFO = {
@@ -1049,4 +1057,5 @@ export const CURATED_BRANDS: CoffeeBrand[] = [
       },
     ],
   },
+  ...EXTENDED_BRANDS,
 ];

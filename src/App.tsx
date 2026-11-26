@@ -41,7 +41,12 @@ export default function App() {
       (brand) =>
         brand.name.toLowerCase().includes(q) ||
         brand.city.toLowerCase().includes(q) ||
-        brand.blends.some((blend) => blend.name.toLowerCase().includes(q))
+        brand.country.toLowerCase().includes(q) ||
+        brand.blends.some(
+          (blend) =>
+            blend.name.toLowerCase().includes(q) ||
+            blend.origins.some((origin) => origin.toLowerCase().includes(q))
+        )
     );
   }, [brands, searchInput]);
 
@@ -84,7 +89,7 @@ export default function App() {
       const contentType = res.headers.get('content-type') || '';
       if (!contentType.includes('application/json')) {
         setSearchError(
-          `In modalità APK offline sono disponibili subito le ${brands.length} torrefazioni in archivio. Per cercare marche extra online collega l'URL del server in VITE_API_BASE_URL.`
+          `Nell'archivio integrato sono subito disponibili ${brands.length} torrefazioni italiane e internazionali. Per cercare altre marche online collega l'URL del server in VITE_API_BASE_URL.`
         );
         return;
       }
@@ -128,13 +133,15 @@ export default function App() {
       return;
     }
 
-    // Controlla corrispondenza esatta o stretta nell'archivio locale
-    const exactMatch = brands.find(
-      (b) =>
-        b.name.toLowerCase() === q.toLowerCase() ||
-        b.name.toLowerCase().includes(q.toLowerCase()) ||
-        q.toLowerCase().includes(b.name.toLowerCase())
-    );
+    // Controlla corrispondenza per nome marca o per miscela/città/origine nell'archivio locale
+    const normalized = q.toLowerCase();
+    const exactMatch =
+      brands.find(
+        (b) =>
+          b.name.toLowerCase() === normalized ||
+          b.name.toLowerCase().includes(normalized) ||
+          normalized.includes(b.name.toLowerCase())
+      ) ?? matchingSuggestions[0];
 
     if (exactMatch) {
       setSelectedBrandId(exactMatch.id);
@@ -194,7 +201,7 @@ export default function App() {
                         type="text"
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.target.value)}
-                        placeholder="Es. Lavazza, illy, Kimbo, Borbone, Quarta, Corsini…"
+                        placeholder="Es. Lavazza, illy, Kimbo, Borbone, Barbera, Quarta, Hag, Starbucks…"
                         className="w-full h-12 pl-10 pr-4 bg-white border border-[#D4C3AE] rounded-lg text-sm text-[#2C1B12] placeholder:text-[#8C705C] focus:outline-none focus:border-[#4A2E1F] focus:ring-2 focus:ring-[#4A2E1F]/15 transition-shadow"
                       />
                     </div>
@@ -220,7 +227,7 @@ export default function App() {
                       {matchingSuggestions.length > 0 ? (
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="text-xs text-[#6B4C38]">In archivio:</span>
-                          {matchingSuggestions.slice(0, 5).map((brand) => (
+                          {matchingSuggestions.slice(0, 6).map((brand) => (
                             <button
                               key={brand.id}
                               type="button"

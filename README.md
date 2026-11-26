@@ -1,23 +1,22 @@
-# SkopriKikko — Generazione APK Android con GitHub
+# SkopriKikko — Sito Web Pubblico e Generazione APK Android
 
-Questo repository è già pronto per generare automaticamente il file **SkopriKikko.apk** direttamente su GitHub tramite **GitHub Actions** (senza dover installare Android Studio sul PC).
+Questo repository include due workflow automatici su **GitHub Actions**: uno per pubblicare il sito web pubblico gratuito con `SkopriKikko` nell'indirizzo e uno per generare automaticamente `SkopriKikko.apk` per Android.
 
-## Come ottenere l'APK da GitHub
+## 1. Pagina web pubblica (`https://mrrearm.github.io/SkopriKikko/`)
 
-1. Esporta o carica questo progetto in un repository su **GitHub** (branch `main` o `master`).
-2. Apri la scheda **Actions** del repository su GitHub.
-3. Vedrai partire automaticamente il workflow **Build SkopriKikko Android APK** (puoi anche avviarlo manualmente cliccando **Run workflow**).
-4. Al termine della build (circa 2–3 minuti), scorri in basso nella sezione **Artifacts** e scarica **SkopriKikko-APK** (contiene `SkopriKikko.apk`).
-5. Trasferisci `SkopriKikko.apk` sul telefono Android e installalo.
+1. Carica il progetto su GitHub (branch `main` o `master`).
+2. Nel repository GitHub vai su **Settings > Pages**.
+3. Alla voce **Build and deployment > Source** scegli **GitHub Actions**.
+4. Il workflow **Deploy SkopriKikko Public Website (GitHub Pages)** pubblicherà automaticamente il sito su:
+   `https://<tuo-username>.github.io/SkopriKikko/` (nel tuo caso `https://mrrearm.github.io/SkopriKikko/`).
+5. *(Opzionale)* Se acquisti un dominio personalizzato (es. `skoprikikko.it` o `skoprikikko.com`), puoi collegarlo direttamente da **Settings > Pages > Custom domain**.
 
-## Protezione della barra di stato (orario e batteria)
+## 2. Generazione APK Android (`SkopriKikko.apk`)
 
-L'app include una protezione multilivello per impedire all'header di sovrapporsi alla barra superiore del telefono Android (orario, icone notifiche e percentuale batteria):
+1. Apri la scheda **Actions** del repository su GitHub.
+2. Apri il workflow **Build SkopriKikko Android APK** (parte ad ogni push o cliccando **Run workflow**).
+3. Al termine, scarica l'artifact **SkopriKikko-APK** contenente `SkopriKikko.apk` già configurato con logo, splash screen e protezione della barra di stato (orario e batteria).
 
-- `viewport-fit=cover` + `safe-area-top` (`env(safe-area-inset-top)` e `--safe-area-inset-top`) sull'header (`src/components/Header.tsx`)
-- Plugin `SystemBars` (`insetsHandling: 'css'`, `style: 'LIGHT'`) e `StatusBar` (`overlaysWebView: false`, `#FCF9F4`) in `capacitor.config.ts` e `src/utils/mobileStatusBar.ts`
-- Tema Android `fitsSystemWindows=true` e `windowLightStatusBar=true` applicato automaticamente da `scripts/configure-android.mjs`
+## Ricerca marche extra online (opzionale)
 
-## Ricerca marche extra online nell'APK (opzionale)
-
-Nell'APK sono già incluse offline tutte le 12 principali torrefazioni italiane. Se vuoi abilitare dentro l'APK anche la ricerca online di marche aggiuntive, imposta su GitHub in **Settings > Secrets and variables > Actions > Variables** la variabile `VITE_API_BASE_URL` con l'URL del tuo server SkopriKikko pubblicato.
+Sia il sito web sia l'APK funzionano subito offline con 32 torrefazioni italiane e internazionali (oltre 100 miscele complete di grammatura, origine dei chicchi e compatibilità Kamira) già integrate. Per abilitare anche la ricerca online di marche aggiuntive, imposta su GitHub in **Settings > Secrets and variables > Actions > Variables** la variabile `VITE_API_BASE_URL` con l'URL del tuo server SkopriKikko pubblicato.

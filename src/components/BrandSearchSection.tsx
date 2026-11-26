@@ -1,4 +1,5 @@
-import { MapPin, ArrowUpRight, Loader2, AlertCircle, RotateCcw } from 'lucide-react';
+import { useState } from 'react';
+import { MapPin, ArrowUpRight, Loader2, AlertCircle, RotateCcw, ChevronDown, ChevronUp } from 'lucide-react';
 import type { CoffeeBlend, CoffeeBrand, CompatibilityFilter } from '../types/coffee';
 import { EspressoCupIcon, KamiraCompatibilityStrip, MokaIcon } from './CoffeeIcons';
 
@@ -29,6 +30,19 @@ export function BrandSearchSection({
   onClearError,
   onRetryLiveSearch,
 }: BrandSearchSectionProps) {
+  const [showAllBrands, setShowAllBrands] = useState(false);
+
+  const INITIAL_VISIBLE_BRANDS = 12;
+  const totalBlends = brands.reduce((sum, brand) => sum + brand.blends.length, 0);
+
+  const visibleBrands = showAllBrands
+    ? brands
+    : (() => {
+        const initial = brands.slice(0, INITIAL_VISIBLE_BRANDS);
+        const isSelectedInInitial = initial.some((b) => b.id === selectedBrand.id);
+        return isSelectedInInitial ? initial : [...initial, selectedBrand];
+      })();
+
   const compatibleCount = selectedBrand.blends.filter((b) => b.kamiraCompatible).length;
   const incompatibleCount = selectedBrand.blends.length - compatibleCount;
 
@@ -43,12 +57,12 @@ export function BrandSearchSection({
       <div className="max-w-6xl mx-auto px-5 sm:px-8 space-y-10">
         {/* Selettore rapido torrefazioni */}
         <div className="space-y-3">
-          <div className="flex items-baseline justify-between gap-4">
+          <div className="flex flex-wrap items-baseline justify-between gap-2 sm:gap-4">
             <p className="text-xs font-semibold tracking-wide text-[#744932]">
               Torrefazioni in archivio
             </p>
             <p className="text-xs text-[#6B4C38] tabular-nums">
-              {brands.length} marche pronte · ricerca libera attiva
+              {brands.length} marche · {totalBlends} miscele pronte
             </p>
           </div>
 
@@ -57,7 +71,7 @@ export function BrandSearchSection({
             role="tablist"
             aria-label="Seleziona marca di caffè"
           >
-            {brands.map((brand) => {
+            {visibleBrands.map((brand) => {
               const isActive = brand.id === selectedBrand.id;
               return (
                 <button
@@ -76,6 +90,27 @@ export function BrandSearchSection({
                 </button>
               );
             })}
+
+            {brands.length > INITIAL_VISIBLE_BRANDS && (
+              <button
+                type="button"
+                onClick={() => setShowAllBrands((prev) => !prev)}
+                aria-expanded={showAllBrands}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold text-[#593724] bg-[#EDE3D5] hover:bg-[#E2D3BE] border border-[#D4C3AE] rounded-md transition-colors duration-150 whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#593724]"
+              >
+                {showAllBrands ? (
+                  <>
+                    <span>Mostra principali</span>
+                    <ChevronUp className="w-4 h-4" aria-hidden="true" />
+                  </>
+                ) : (
+                  <>
+                    <span>Tutte le {brands.length} marche</span>
+                    <ChevronDown className="w-4 h-4" aria-hidden="true" />
+                  </>
+                )}
+              </button>
+            )}
           </div>
         </div>
 
